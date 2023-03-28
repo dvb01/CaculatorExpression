@@ -5,7 +5,7 @@ object FormCalc: TFormCalc
   ClientWidth = 798
   Color = 4271150
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clWhite
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
@@ -278,7 +278,7 @@ object FormCalc: TFormCalc
     Enabled = False
     Interval = 150
     OnTimer = TimerScannerTimer
-    Left = 608
-    Top = 168
+    Left = 736
+    Top = 24
   end
 end
