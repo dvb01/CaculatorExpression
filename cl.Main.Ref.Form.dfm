@@ -19,7 +19,7 @@ object FormCaclRef: TFormCaclRef
     Top = 0
     Width = 635
     Height = 299
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -36,8 +36,6 @@ object FormCaclRef: TFormCaclRef
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 8
-      ExplicitTop = 31
       object Label4: TLabel
         Left = 14
         Top = 31
@@ -70,8 +68,6 @@ object FormCaclRef: TFormCaclRef
         ItemHeight = 18
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 18
-        ExplicitTop = 58
       end
     end
     object TabSheet2: TTabSheet
@@ -79,6 +75,8 @@ object FormCaclRef: TFormCaclRef
       ImageIndex = 1
       ExplicitLeft = 0
       ExplicitTop = 31
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 13
         Top = 31
@@ -111,10 +109,6 @@ object FormCaclRef: TFormCaclRef
         ItemHeight = 18
         ParentFont = False
         TabOrder = 0
-        ExplicitLeft = 23
-        ExplicitTop = 46
-        ExplicitWidth = 581
-        ExplicitHeight = 203
       end
     end
     object TabSheet3: TTabSheet

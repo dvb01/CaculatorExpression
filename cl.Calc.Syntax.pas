@@ -636,21 +636,27 @@ end;
 }
 
 
-function GG ():double;
+function Test ():double;
 begin
   Result:=12345; // тестовая функция для вызова с калькулятора
 end;
 
-function Sum4 (x1,x2,x3,x4:double):double;
+function TestSum4 (x1,x2,x3,x4:double):double;
 begin
-  Result:=x4; // тестовая функция для вызова с калькулятора
+  Result:=x1+x2+x3+x4; // тестовая функция для вызова с калькулятора
+end;
+
+function TestSum3 (x1,x2,x3:double):double;
+begin
+  Result:=x1+x2+x3; // тестовая функция для вызова с калькулятора
 end;
 
 initialization
 begin
     TGlobalFunc.Create;
-    TGlobalFunc.GlobalList.Add('GG',@GG,0);
-    TGlobalFunc.GlobalList.Add('Sum4',@Sum4,4);
+    Syntax.FuncReg('Test',@Test);
+    Syntax.FuncReg4('TestSum4',@TestSum4);
+    Syntax.FuncRegCustom('TestSum3',@TestSum3,3);
 end;
 finalization
 begin

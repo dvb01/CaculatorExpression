@@ -67,6 +67,26 @@ uses cl.Main.Setting.Form,
 {$R *.dfm}
 
 
+
+function TestGetHeightApp:double;
+begin
+   Result:= FormCalc.Height;
+end;
+
+function TestSetHeightApp(Value:double):double;
+begin
+   FormCalc.Height:=  max(min(Round(Value),Screen.Height),50);
+   Result:= FormCalc.Height;
+end;
+
+function TestInc(Value:double):double;
+var R:integer;
+begin
+   R:=Round(Value);
+   Inc(R);
+   Result:= R;
+end;
+
 procedure TFormCalc.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(FScannerAtimate);
@@ -78,6 +98,10 @@ begin
    MemoResult.Text:='';
    FScannerAtimate:=TclScanner.Create;
    FScannerAtimate.Braskets:=['(','{','[',')','}',']'];
+
+    Syntax.FuncReg('GetHeightApp',@TestGetHeightApp);
+    Syntax.FuncReg1('SetHeightApp',@TestSetHeightApp);
+    Syntax.FuncRegCustom('TestInc',@TestInc,1);
 end;
 
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);

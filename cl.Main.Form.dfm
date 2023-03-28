@@ -26,8 +26,6 @@ object FormCalc: TFormCalc
     ParentBackground = False
     TabOrder = 0
     OnAlignPosition = PanelInputAlignPosition
-    ExplicitLeft = -5
-    ExplicitTop = 2
     object PanelExpression: TPanel
       Left = 75
       Top = 29
@@ -71,7 +69,6 @@ object FormCalc: TFormCalc
         ScrollBars = ssBoth
         TabOrder = 0
         Zoom = 100
-        ExplicitTop = 45
       end
       object PanelExpressionTop: TPanel
         AlignWithMargins = True
@@ -83,8 +80,6 @@ object FormCalc: TFormCalc
         BevelOuter = bvNone
         Color = clBlack
         TabOrder = 1
-        ExplicitTop = 26
-        ExplicitWidth = 648
         object PanelScannerRun: TPanel
           AlignWithMargins = True
           Left = 68
@@ -113,8 +108,6 @@ object FormCalc: TFormCalc
           OnClick = PanelScannerRunClick
           OnMouseEnter = PanelExecuteMouseEnter
           OnMouseLeave = PanelExecuteMouseLeave
-          ExplicitLeft = 98
-          ExplicitTop = 0
         end
         object PanelRef: TPanel
           AlignWithMargins = True
@@ -141,7 +134,6 @@ object FormCalc: TFormCalc
           OnClick = PanelRefClick
           OnMouseEnter = PanelExecuteMouseEnter
           OnMouseLeave = PanelExecuteMouseLeave
-          ExplicitTop = 8
         end
         object PanelSettingOpen: TPanel
           AlignWithMargins = True
@@ -168,8 +160,6 @@ object FormCalc: TFormCalc
           OnClick = PanelSettingOpenClick
           OnMouseEnter = PanelExecuteMouseEnter
           OnMouseLeave = PanelExecuteMouseLeave
-          ExplicitLeft = 8
-          ExplicitTop = 8
         end
       end
       object PanelExpressionBottom: TPanel
@@ -183,8 +173,6 @@ object FormCalc: TFormCalc
         Color = 6628393
         ParentBackground = False
         TabOrder = 2
-        ExplicitTop = 387
-        ExplicitWidth = 648
         object PanelExecute: TPanel
           AlignWithMargins = True
           Left = 0
@@ -210,7 +198,6 @@ object FormCalc: TFormCalc
           OnClick = PanelExecuteClick
           OnMouseEnter = PanelExecuteMouseEnter
           OnMouseLeave = PanelExecuteMouseLeave
-          ExplicitTop = -3
         end
       end
     end
@@ -230,8 +217,6 @@ object FormCalc: TFormCalc
     Color = 5980985
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = -19
-    ExplicitTop = 540
     object Label1: TLabel
       Left = 24
       Top = 16
@@ -270,8 +255,6 @@ object FormCalc: TFormCalc
       ReadOnly = True
       TabOrder = 0
       Zoom = 100
-      ExplicitLeft = 24
-      ExplicitTop = 38
     end
   end
   object TimerScanner: TTimer
