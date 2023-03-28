@@ -1,5 +1,8 @@
 **/Win32
-Win32/
+
+Win32/Debug/set/
+Win32/Debug/set/.dpu/
+Win32/Debug/.dpu/
 # Uncomment these types if you want even more clean repository. But be careful.
 # It can make harm to an existing project source. Read explanations below.
 #
@@ -29,7 +32,7 @@ Win32/
 #
 
 # Delphi compiler-generated binaries (safe to delete)
-*.exe
+#*.exe
 *.dll
 *.bpl
 *.bpi
