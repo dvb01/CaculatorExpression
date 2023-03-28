@@ -1,6 +1,5 @@
-Win32/Debug/set/
-Win32/Debug/set/.dpu/
-Win32/Debug/.dpu/
+Win32/
+!Win32/Debug/Calculator.exe
 # Uncomment these types if you want even more clean repository. But be careful.
 # It can make harm to an existing project source. Read explanations below.
 #
