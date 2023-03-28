@@ -83,6 +83,7 @@ end;
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);
 var Calc:TclCalc;
 begin
+
     Calc:= TclCalc.Create;
     Calc.Rule.CanShowError:=  FormCalcSetting.P_CanShowError.Checked;
     Calc.OnLog:= Log;
