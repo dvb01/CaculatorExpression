@@ -32,7 +32,7 @@ Win32/Debug/.dpu/
 #
 
 # Delphi compiler-generated binaries (safe to delete)
-#*.exe
+
 *.dll
 *.bpl
 *.bpi
