@@ -21,7 +21,7 @@ object FormCalcSetting: TFormCalcSetting
     Height = 85
     Align = alClient
     BevelOuter = bvNone
-    Color = 6628393
+    Color = 4271150
     ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 627

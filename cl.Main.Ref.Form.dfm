@@ -10,6 +10,7 @@ object FormCaclRef: TFormCaclRef
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -18,7 +19,7 @@ object FormCaclRef: TFormCaclRef
     Top = 0
     Width = 635
     Height = 299
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -115,6 +116,10 @@ object FormCaclRef: TFormCaclRef
         ExplicitWidth = 581
         ExplicitHeight = 203
       end
+    end
+    object TabSheet3: TTabSheet
+      Caption = #1055#1088#1080#1084#1077#1088#1099
+      ImageIndex = 2
     end
   end
 end

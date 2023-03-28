@@ -16,6 +16,7 @@ type
     ListOperators: TListBox;
     Label1: TLabel;
     ListFunc: TListBox;
+    TabSheet3: TTabSheet;
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }

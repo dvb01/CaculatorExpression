@@ -17,7 +17,7 @@ uses
   cl.Calc.Compiler.Runner in 'cl.Calc.Compiler.Runner.pas',
   cl.Calc.Compiler.Types in 'cl.Calc.Compiler.Types.pas',
   cl.Calc.Exception in 'cl.Calc.Exception.pas',
-  cl.Main.Ref.Form in 'cl.Main.Ref.Form.pas' {Form1};
+  cl.Main.Ref.Form in 'cl.Main.Ref.Form.pas' {FormCaclRef};
 
 {$R *.res}
 
@@ -26,6 +26,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFormCalc, FormCalc);
   Application.CreateForm(TFormCalcSetting, FormCalcSetting);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormCaclRef, FormCaclRef);
   Application.Run;
 end.

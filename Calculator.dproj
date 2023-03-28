@@ -121,7 +121,7 @@
         <DCCReference Include="cl.Calc.Compiler.Types.pas"/>
         <DCCReference Include="cl.Calc.Exception.pas"/>
         <DCCReference Include="cl.Main.Ref.Form.pas">
-            <Form>Form1</Form>
+            <Form>FormCaclRef</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <None Include="cl.Calc.Define.inc"/>

@@ -8,6 +8,8 @@ uses
   System.SysUtils,
   System.Classes,
   System.Generics.Collections,
+  System.Rtti,
+  System.TypInfo,
   Math,
   cl.Calc.Types,
   cl.Calc.Syntax,
@@ -235,45 +237,17 @@ begin
 end;
 
 function TclRunner.GetValueFunctionAddr(Ctx: TccFunctionAddr;const Args: TArray<double>): double;
+var Values: TArray<TValue>;
+C,I:integer;
 begin
-  if Ctx.CountArgs <> length(Args) then
-   ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr', 'Кол-во агрументов переданные в функцию должно быть равно '+Ctx.CountArgs.ToString, nil, []{$ENDIF});
+   C:= Ctx.CountArgs;
+   if C <> length(Args) then
+    ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr', 'Кол-во агрументов переданные в функцию должно быть равно '+Ctx.CountArgs.ToString, nil, []{$ENDIF});
 
-  case Ctx.CountArgs of
-       0:begin
-          Result:= Syntax.TclSyntaxCallFunc(Ctx.Call);
-       end;
-       1:begin
-          Result:= Syntax.TclSyntaxCallFunc1(Ctx.Call)(Args[0]);
-       end;
-       2:begin
-          Result:= Syntax.TclSyntaxCallFunc2(Ctx.Call)(Args[0],Args[1]);
-       end;
-       3:begin
-         Result:= Syntax.TclSyntaxCallFunc3(Ctx.Call)(Args[0],Args[1],Args[2]);
-       end;
-       4:begin
-         Result:= Syntax.TclSyntaxCallFunc4(Ctx.Call)(Args[0],Args[1],Args[2],Args[3]);
-       end;
-       5:begin
-         Result:= Syntax.TclSyntaxCallFunc5(Ctx.Call)(Args[0],Args[1],Args[2],Args[3],Args[4]);
-       end;
-       6:begin
-         Result:= Syntax.TclSyntaxCallFunc6(Ctx.Call)(Args[0],Args[1],Args[2],Args[3],Args[4],Args[5]);
-       end;
-       7:begin
-         Result:= Syntax.TclSyntaxCallFunc7(Ctx.Call)(Args[0],Args[1],Args[2],Args[3],Args[4],Args[5],Args[6]);
-       end;
-  else
-  begin
-   // to do написать asm что бы вызывать функцию с любым количеством параметров
-   Result:= 0;
-   ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr', 'Невалидная функция. Количество параметров велико. '+Ctx.CountArgs.ToString, nil, []{$ENDIF});
-  end;
-  end;
-
-
-
+   Setlength(Values,C);
+   for I := 0 to C-1 do
+    Values[i]:= Args[i];
+   Result:=System.Rtti.Invoke(Ctx.Call,Values,System.TypInfo.ccReg,typeinfo(Double),true,false).AsExtended;
 end;
 
 function TclRunner.GetValueFunctionSys(Ctx: TccFunctionSys; const Args: TArray<double>): double;
