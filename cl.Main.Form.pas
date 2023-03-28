@@ -101,7 +101,7 @@ begin
 
     Syntax.FuncReg('GetHeightApp',@TestGetHeightApp);
     Syntax.FuncReg1('SetHeightApp',@TestSetHeightApp);
-    Syntax.FuncRegCustom('TestInc',@TestInc,1);
+    Syntax.FuncRegCustom('Inc',@TestInc,1);
 end;
 
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);
