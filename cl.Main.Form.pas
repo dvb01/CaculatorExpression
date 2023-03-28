@@ -67,7 +67,7 @@ uses cl.Main.Setting.Form,
 {$R *.dfm}
 
 
-
+ { Test Func }
 function TestGetHeightApp:double;
 begin
    Result:= FormCalc.Height;
@@ -87,6 +87,8 @@ begin
    Result:= R;
 end;
 
+  { TFormCalc }
+
 procedure TFormCalc.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(FScannerAtimate);
@@ -99,9 +101,11 @@ begin
    FScannerAtimate:=TclScanner.Create;
    FScannerAtimate.Braskets:=['(','{','[',')','}',']'];
 
-    Syntax.FuncReg('GetHeightApp',@TestGetHeightApp);
-    Syntax.FuncReg1('SetHeightApp',@TestSetHeightApp);
-    Syntax.FuncRegCustom('Inc',@TestInc,1);
+   Syntax.FuncReg('Now',@Now);
+   Syntax.FuncReg('Date',@Date);
+   Syntax.FuncReg('GetHeightApp',@TestGetHeightApp);
+   Syntax.FuncReg1('SetHeightApp',@TestSetHeightApp);
+   Syntax.FuncRegCustom('Inc',@TestInc,1);
 end;
 
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);
