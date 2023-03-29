@@ -33,6 +33,7 @@ implementation
 
 procedure TctGen.New(var ArrTest:TArray<TctItemTest>;Count:integer);
 begin
+    raise Exception.Create('Error cl.Calc.GeneratorExpression.TctGen.New no code');
     // ????
 end;
 
