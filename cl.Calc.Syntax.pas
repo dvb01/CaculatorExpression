@@ -117,6 +117,7 @@ uses
     FuncBrasketEnd =')';
 
     class function OpToEnum(const OpValue: string): TEnumOperator; static;
+    class function OpEnumToStr(const Op: TEnumOperator): string; static;
     class function OpsToEnum(const OpsValue: Char): TEnumSeparator; static;
     class procedure OpToList(L:TStrings); static;
     //функции
@@ -594,6 +595,26 @@ begin
   else
     Result := opNone;
 
+end;
+
+class function Syntax.OpEnumToStr(const Op: TEnumOperator): string;
+begin
+    case Op of
+       opPlus: Result:=  sopPlus[0];
+       opMinus: Result:=  sopMinus[0];
+       opMult: Result:=  sopMult[0];
+       opDiv: Result:=  sopDiv[0];
+       opDivWhole: Result:=  sopDivWhole[0];
+       opPower: Result:=  sopPower[0];
+       opMod: Result:=  sopMod[0];
+       opShl: Result:=  sopShl[0];
+       opShr: Result:=  sopShr[0];
+       opAnd: Result:=  sopAnd[0];
+       opOr: Result:=  sopOr[0];
+       opXor: Result:=  sopXor[0];
+    else Result:='opNone';
+
+    end;
 end;
 
 class function Syntax.OpsToEnum(const OpsValue: Char): TEnumSeparator;

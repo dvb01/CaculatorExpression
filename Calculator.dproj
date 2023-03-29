@@ -124,6 +124,8 @@
             <Form>FormCaclRef</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="cl.Calc.GeneratorExpression.pas"/>
+        <DCCReference Include="cl.Calc.DeCompiler.pas"/>
         <None Include="cl.Calc.Define.inc"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

@@ -274,6 +274,8 @@ type
       function AddVariable(const Name:string):TcgVariable;
       procedure Add(Value:TcgVariable);
       procedure Delete(Value:TcgVariable);
+      function Count:integer;
+      function Item(Index:integer): TcgVariable;
       constructor Create;
       destructor Destroy; override;
   end;
@@ -667,6 +669,11 @@ end;
 { TcgVariableTabl }
 
 
+function TcgVariableTabl.Count: integer;
+begin
+   Result:= FList.Count;
+end;
+
 constructor TcgVariableTabl.Create;
 begin
    inherited;
@@ -709,6 +716,11 @@ begin
    if CmpStr(Name,TcgVariable(FList.List[i]).FName) then
    exit(TcgVariable(FList.List[i]));
     Result:=nil;
+end;
+
+function TcgVariableTabl.Item(Index: integer): TcgVariable;
+begin
+   Result:= TcgVariable(FList[Index]);
 end;
 
 { TcgVariable }

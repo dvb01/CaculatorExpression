@@ -17,7 +17,9 @@ uses
   cl.Calc.Compiler.Runner in 'cl.Calc.Compiler.Runner.pas',
   cl.Calc.Compiler.Types in 'cl.Calc.Compiler.Types.pas',
   cl.Calc.Exception in 'cl.Calc.Exception.pas',
-  cl.Main.Ref.Form in 'cl.Main.Ref.Form.pas' {FormCaclRef};
+  cl.Main.Ref.Form in 'cl.Main.Ref.Form.pas' {FormCaclRef},
+  cl.Calc.GeneratorExpression in 'cl.Calc.GeneratorExpression.pas',
+  cl.Calc.DeCompiler in 'cl.Calc.DeCompiler.pas';
 
 {$R *.res}
 

@@ -47,6 +47,7 @@ type
     procedure PanelScannerRunClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure TimerScannerTimer(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
      FScannerAtimate:TclScanner;
@@ -89,6 +90,23 @@ end;
 
   { TFormCalc }
 
+procedure TFormCalc.Button1Click(Sender: TObject);
+//var Calc:TclCalcDeComp;
+// r:double;
+begin
+   {
+    Calc:= TclCalcDeComp.Create;
+    Calc.Rule.CanShowError:=  false;
+    Calc.OnLog:= Log;
+    try
+       Calc.Execute(MemoExpression.Text);
+      Memo1.Text:= Calc.ReturnTextExpression;
+    finally
+      Calc.Free;
+    end;
+     }
+end;
+
 procedure TFormCalc.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   FreeAndNil(FScannerAtimate);
@@ -106,39 +124,13 @@ begin
    Syntax.FuncReg('GetHeightApp',@TestGetHeightApp);
    Syntax.FuncReg1('SetHeightApp',@TestSetHeightApp);
    Syntax.FuncRegCustom('Inc',@TestInc,1);
+
+
 end;
 
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);
 var Calc:TclCalc;
- r:double;
 begin
-    r :=
-     (
-      2 + 3+ 4  +5 + 1.2+ 11.5+ 0.77+ - 1 -2 - 3 - 4.5 - 6.6 - + - 2 + - 3 - + 4 +
-      2 + (3+ 4)  +(5 + 1.2)+ (11.5+ (0.77+ - 1)) -2 - (3 - (4.5 - 6.6) - + - 2) + - 3 - + 4 -
-      2 /  - - - (3 -  4)  +(5 / 1.2)+ (11.5+ -(0.77* - 1)) -2 - (3*2 - (4.5 - 6.6) -2 * - 2) + - (3 / + 4)
-    )
-     -
-    (
-      2 + 3+ 4  +5 + 1.2+ 11.5+ 0.77+ - 1 -2 - 3 - 4.5 - 6.6 - + - 2 + - 3 - + 4 +
-      2 + (3+ 4)  +(5 + 1.2)+ (11.5+ (0.77+ - 1)) -2 - (3 - (4.5 - 6.6) - + - 2) + - 3 - + 4 -
-      2 /  - - - (3 -  4)  +(5 / 1.2)+ (11.5+ -(0.77* - 1)) -2 - (3*2 - (4.5 - 6.6) -2 * - 2) + - (3 / + 4)
-    )
-
-     *
-    (
-      2 + 3+ 4  +5 + 1.2+ 11.5+ 0.77+ - 1 -2 - 3 - 4.5 - 6.6 - + - 2 + - 3 - + 4 +
-      2 + (3+ 4)  +(5 + 1.2)+ (11.5+ (0.77+ - 1)) -2 - (3 - (4.5 - 6.6) - + - 2) + - 3 - + 4 -
-      2 /  - - - (3 -  4)  +(5 / 1.2)+ (11.5+ -(0.77* - 1)) -2 - (3*2 - (4.5 - 6.6) -2 * - 2) + - (3 / + 4)
-    )
-
-     - + -
-    (
-      2 + 3+ 4  +5 + 1.2+ 11.5+ 0.77+ - 1 -2 - 3 - 4.5 - 6.6 - + - 2 + - 3 - + 4 +
-      2 + (3+ 4)  +(5 + 1.2)+ (11.5+ (0.77+ - 1)) -2 - (3 - (4.5 - 6.6) - + - 2) + - 3 - + 4 -
-      2 /  - -( - (3 -  4)  +(5 / 1.2)+ (11.5+ -(0.77* - 1)) -2 - (3*2 - (4.5 - 6.6) -2 * - 2) + - (3 / + 4)
-    ));
-
     Calc:= TclCalc.Create;
     Calc.Rule.CanShowError:=  FormCalcSetting.P_CanShowError.Checked;
     Calc.OnLog:= Log;
