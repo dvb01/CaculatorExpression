@@ -36,7 +36,7 @@ type
     function GetValueExpression(Ctx: TccExpression): double;
 
     function Exp(Ctx: TccExpression): double;
-    procedure Exp_CheckSubsequence(Ctx: TccExpression; IndexStart: integer);
+    procedure Exp_CheckSubsequence(Ctx: TccExpression);
     function Exp_Сalculation(Ctx: TccExpression; Ops: Syntax.TEnumOperators; var AReturn: double): boolean;
     function Exp_IndexOperator(Ctx: TccExpression; StartIndex: integer; Op: Syntax.TEnumOperators): integer;
   protected
@@ -240,14 +240,25 @@ function TclRunner.GetValueFunctionAddr(Ctx: TccFunctionAddr;const Args: TArray<
 var Values: TArray<TValue>;
 C,I:integer;
 begin
+   Result:=0;
    C:= Ctx.CountArgs;
    if C <> length(Args) then
-    ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr', 'Кол-во агрументов переданные в функцию должно быть равно '+Ctx.CountArgs.ToString, nil, []{$ENDIF});
+    ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr',
+    'Кол-во агрументов переданные в функцию должно быть равно ['+Ctx.CountArgs.ToString+']', nil, []{$ENDIF});
 
    Setlength(Values,C);
    for I := 0 to C-1 do
     Values[i]:= Args[i];
-   Result:=System.Rtti.Invoke(Ctx.Call,Values,System.TypInfo.ccReg,typeinfo(Double),true,false).AsExtended;
+
+   // unsafe
+   try
+    Result:=System.Rtti.Invoke(Ctx.Call,Values,System.TypInfo.ccReg,typeinfo(Double),true,false).AsExtended;
+   except
+      on e:exception do
+            ErrorRunner(Ctx{$IFDEF CalcDebug},'GetValueFunctionAddr',
+            'Функция ['+Ctx.NameFunc+'] сообщила об ошибке при вызове System.Rtti.Invoke c сообщением['+
+            e.Message+']', nil, []{$ENDIF});
+   end;
 end;
 
 function TclRunner.GetValueFunctionSys(Ctx: TccFunctionSys; const Args: TArray<double>): double;
@@ -392,7 +403,7 @@ begin
     exit;
   end;
 
-  Exp_CheckSubsequence(Ctx, 0);
+  Exp_CheckSubsequence(Ctx);
 
   // для запуска строк с присвоением d:= 1;
   if ContextRoot = Ctx then
@@ -436,38 +447,47 @@ var
 
   function LocGetValueLeftRigth(AOp: TOp; AL, AR: double): double;
   begin
+     Result:=0;
+     try
+        case AOp of
 
-    case AOp of
+          opPlus:
+            Result := AL + AR;
+          opMinus:
+            Result := AL - AR;
+          opMult:
+            Result := AL * AR;
+          opDiv:
+            Result := AL / AR;
+          opDivWhole:
+            Result := Round(AL) div Round(AR);
+          opPower:
+            Result := Power(AL, AR);
+          opMod:
+            Result := Round(AL) mod Round(AR);
+          opShl:
+            Result := Round(AL) Shl Round(AR);
+          opShr:
+            Result := Round(AL) Shr Round(AR);
+          opAnd:
+            Result := Round(AL) And Round(AR);
+          opOr:
+            Result := Round(AL) Or Round(AR);
+          opXor:
+            Result := Round(AL) Xor Round(AR);
+        else
+          raise Exception.CreateResFmt
+            (@Rs_TclRunner_ExpСalculation_InvalidOperator, []);
 
-      opPlus:
-        Result := AL + AR;
-      opMinus:
-        Result := AL - AR;
-      opMult:
-        Result := AL * AR;
-      opDiv:
-        Result := AL / AR;
-      opDivWhole:
-        Result := Round(AL) div Round(AR);
-      opPower:
-        Result := Power(AL, AR);
-      opMod:
-        Result := Round(AL) mod Round(AR);
-      opShl:
-        Result := Round(AL) Shl Round(AR);
-      opShr:
-        Result := Round(AL) Shr Round(AR);
-      opAnd:
-        Result := Round(AL) And Round(AR);
-      opOr:
-        Result := Round(AL) Or Round(AR);
-      opXor:
-        Result := Round(AL) Xor Round(AR);
-    else
-      raise Exception.CreateResFmt
-        (@Rs_TclRunner_ExpСalculation_InvalidOperator, []);
-
-    end;
+        end;
+     except
+        on e:exception do
+            ErrorRunner(Ctx{$IFDEF CalcDebug},
+            'Exp_Сalculation.LocGetValueLeftRigt','не удается выполнить операцию '+
+            GetEnumName(TypeInfo(TOp),Ord(AOp))+
+            ' для чисел Left:['+AL.ToString+'] Rigth:['+AR.ToString+']'+
+            ' Error[ '+e.Message+' ]', nil, []{$ENDIF});
+     end;
   end;
 
   function LocGetCenter(Index: integer): TOp;
@@ -562,10 +582,10 @@ begin
       break;
     if not Result then
       Result := True;
-    c := LocGetCenter(i);
+    C := LocGetCenter(i);
     L := LocGetLeft(i - 1);
     R := LocGetRigth(i);
-    AReturn := LocGetValueLeftRigth(c, L, R);
+    AReturn := LocGetValueLeftRigth(C, L, R);
     Ctx.AddNumberOuter(i, AReturn);
   end;
 end;
@@ -580,8 +600,7 @@ begin
   Result := -1;
 end;
 
-procedure TclRunner.Exp_CheckSubsequence(Ctx: TccExpression;
-  IndexStart: integer);
+procedure TclRunner.Exp_CheckSubsequence(Ctx: TccExpression);
 var
   i: integer;
   Expected: Syntax.TEnumExpected;
@@ -592,7 +611,7 @@ var
   b:boolean;
 begin
   Expected := opeEval; // opeAny, opeEval, opeSepa
-  i := IndexStart;
+  i := 0;
   IsCurAssing := false;
   IsNeedError := false;
   IsLastSepAssign := false;
