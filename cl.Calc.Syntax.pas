@@ -675,8 +675,8 @@ end;
 initialization
 begin
     TGlobalFunc.Create;
-    Syntax.FuncReg('Test',@Test);
-    Syntax.FuncReg4('TestSum4',@TestSum4);
+    Syntax.FuncReg('Test',Test);
+    Syntax.FuncReg4('TestSum4',TestSum4);
     Syntax.FuncRegCustom('TestSum3',@TestSum3,3);
 end;
 finalization

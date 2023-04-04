@@ -37,6 +37,8 @@ type
     PanelExecute: TPanel;
     PanelSettingOpen: TPanel;
     TimerScanner: TTimer;
+    Button1: TButton;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure PanelInputAlignPosition(Sender: TWinControl; Control: TControl; var NewLeft, NewTop, NewWidth, NewHeight: Integer; var AlignRect: TRect; AlignInfo: TAlignInfo);
     procedure PanelExecuteClick(Sender: TObject);
@@ -91,20 +93,19 @@ end;
   { TFormCalc }
 
 procedure TFormCalc.Button1Click(Sender: TObject);
-//var Calc:TclCalcDeComp;
-// r:double;
+var Calc:TclCalcDeComp;
+ r:double;
 begin
-   {
+
     Calc:= TclCalcDeComp.Create;
     Calc.Rule.CanShowError:=  false;
-    Calc.OnLog:= Log;
     try
        Calc.Execute(MemoExpression.Text);
       Memo1.Text:= Calc.ReturnTextExpression;
     finally
       Calc.Free;
     end;
-     }
+
 end;
 
 procedure TFormCalc.FormClose(Sender: TObject; var Action: TCloseAction);

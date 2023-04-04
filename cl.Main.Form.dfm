@@ -257,6 +257,31 @@ object FormCalc: TFormCalc
       Zoom = 100
     end
   end
+  object Button1: TButton
+    Left = 280
+    Top = 443
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Memo1: TMemo
+    Left = 56
+    Top = 400
+    Width = 209
+    Height = 137
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 10485760
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Lines.Strings = (
+      'Memo1')
+    ParentFont = False
+    ScrollBars = ssBoth
+    TabOrder = 3
+  end
   object TimerScanner: TTimer
     Enabled = False
     Interval = 150
