@@ -514,7 +514,7 @@ var
   ADouble: Double;
 begin
   AValue := Scanner.CurText;
-  AValue := trim(AValue.Replace('.', ','));
+  AValue := trim(AValue.Replace('.', FormatSettings.DecimalSeparator));
   if not TryStrToFloat(AValue, ADouble) then
     ErrorParser({$IFDEF CalcDebug}'TokenClassNumber', '', nil, []{$ENDIF});
   TokenNumber_Update(ADouble);

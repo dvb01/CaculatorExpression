@@ -583,7 +583,7 @@ begin
     FCaret.TokenPosStart := FCaret.TokenPosStop;
     LocUpdateLen;
     c := Sh(0);
-    CurText;
+    //CurText;
 
     if IsInChars(c, Syntax.Spaces) then
       continue
