@@ -94,9 +94,7 @@ end;
 
 procedure TFormCalc.Button1Click(Sender: TObject);
 var Calc:TclCalcDeComp;
- r:double;
 begin
-
     Calc:= TclCalcDeComp.Create;
     Calc.Rule.CanShowError:=  false;
     try
@@ -105,7 +103,6 @@ begin
     finally
       Calc.Free;
     end;
-
 end;
 
 procedure TFormCalc.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -132,6 +129,7 @@ end;
 procedure TFormCalc.PanelExecuteClick(Sender: TObject);
 var Calc:TclCalc;
 begin
+
     Calc:= TclCalc.Create;
     Calc.Rule.CanShowError:=  FormCalcSetting.P_CanShowError.Checked;
     Calc.OnLog:= Log;
@@ -187,7 +185,7 @@ begin
         I:=1;
         while I <= length(Value)  do
         begin
-           if CharInSet( Value[i],[',','.']) then
+           if Value[i] =  FormatSettings.DecimalSeparator then
            break;
            MemoResult.SelStart := I-1;
            MemoResult.SelLength := 1;

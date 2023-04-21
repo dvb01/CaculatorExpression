@@ -198,6 +198,7 @@ object FormCalc: TFormCalc
           OnClick = PanelExecuteClick
           OnMouseEnter = PanelExecuteMouseEnter
           OnMouseLeave = PanelExecuteMouseLeave
+          ExplicitTop = -3
         end
       end
     end
